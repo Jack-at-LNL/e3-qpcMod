@@ -48,9 +48,9 @@ include $(E3_REQUIRE_CONFIG)/DECOUPLE_FLAGS
 ## Exclude linux-ppc64e6500
 ##EXCLUDE_ARCHS = linux-ppc64e6500
 
-
-# APP:=calcApp
-# APPDB:=$(APP)/Db
+#MG
+APP:=qpcModApp
+APPDB:=$(APP)/Db
 # APPSRC:=$(APP)/src
 
 
@@ -63,10 +63,11 @@ include $(E3_REQUIRE_CONFIG)/DECOUPLE_FLAGS
 # USR_CPPFLAGS += -Wno-unused-function
 # USR_CPPFLAGS += -Wno-unused-but-set-variable
 
+#MG
 # TEMPLATES += $(wildcard $(APPDB)/*.db)
-# TEMPLATES += $(wildcard $(APPDB)/*.db)
-# TEMPLATES += $(wildcard $(APPDB)/*.proto)
-# TEMPLATES += $(wildcard $(APPDB)/*.template)
+TEMPLATES += $(wildcard $(APPDB)/*.db)
+TEMPLATES += $(wildcard $(APPDB)/*.proto)
+TEMPLATES += $(wildcard $(APPDB)/*.template)
 
 
 # DBDINC_SRCS += $(APPSRC)/swaitRecord.c
