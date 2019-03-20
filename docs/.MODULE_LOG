@@ -1,0 +1,17 @@
+>>
+Script is used     : e3TemplateGenerator.bash
+Script Path        : /home/maurogiacchini/ics_gitsrc/e3-tools/e3TemplateGenerator
+User               : maurogiacchini
+Log Time           : 2019Mar20-1652-00CET
+e3 repo Hash       : aacac5a
+
+>>
+>> Your sources are located in e3-qpcMod.
+>> 
+EPICS_MODULE_NAME  : qpcMod
+E3_MODULE_SRC_PATH : qpcMod
+E3_TARGET_URL      : https://github.com/Jack-at-LNL
+>> 
+e3 module name     : e3-qpcMod
+e3 target url full : https://github.com/Jack-at-LNL/e3-qpcMod.git
+>> 
