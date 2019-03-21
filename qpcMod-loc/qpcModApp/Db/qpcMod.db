@@ -1,0 +1,21 @@
+################################################################################
+# Database for QPG4 Vacuum Controller
+# Common parameters
+# Mauro Giacchini - 2018-04-18
+#
+# Macro:
+#
+# DEVICENAME    - Device name
+# ASYNPORT      - Asyn PORT
+# AREASTRUCTURE - Areastructure (as defined on ESS CCDB)
+# PUMP          - 1...4
+#
+################################################################################
+
+record (stringin, "$(AREASTRUCTURE):$(DEVICENAME):PwrStatus$(PUMP)R")
+{
+    field (DESC, "GET SUPPLY STATUS OF PUMP $(PUMP)")
+    field (DTYP, "stream")
+    field (INP,  "@qpcMod.proto getStatus($(PUMP)) $(ASYNPORT)")
+    field (SCAN, "1 second")
+}
