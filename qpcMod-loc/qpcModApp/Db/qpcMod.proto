@@ -1,3 +1,24 @@
+#  The program is free software: you can redistribute
+#  it and/or modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation, either version 2 of the
+#  License, or any newer version.
+#
+#  This program is distributed in the hope that it will be useful, but WITHOUT
+#  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+#  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+#  more details.
+#
+#  You should have received a copy of the GNU General Public License along with
+#  this program. If not, see https://www.gnu.org/licenses/gpl-2.0.txt
+#
+#
+#  SESAME labs original protocol author : Abdalla Ahmad (Sesame Labs)
+#  INFN-LNL specific author : Mauro Giacchini
+#                    email  : mauro.giacchini@lnl.infn.it
+#
+#
+
+
 OutTerminator = CR;
 InTerminator = CR;
 ReadTimeout = 2000;
@@ -41,18 +62,25 @@ getPressureUnit
 	in "%*6c%*f%*1c%s";
 }
 
-isEnabled
+getEnabledHV
 {
 	out "cmd 61 \$1";
-	in "%*6c%s";
+#	in "%*6c%s";
+	in "%*6c%{YES|NO}";
+	ExtraInput = Ignore;
 }
 
-enable
+setEnableHV
 {
 	out "cmd 37 \$1";
 }
 
-disable
+setDisableHV
 {
 	out "cmd 38 \$1";
+}
+# for quickly testing new commands
+debug {
+    ExtraInput = Ignore;
+    out "%s"; in "%39c"
 }

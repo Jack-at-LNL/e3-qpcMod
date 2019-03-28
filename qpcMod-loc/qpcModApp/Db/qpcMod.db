@@ -1,6 +1,25 @@
+#
+#  The program is free software: you can redistribute
+#  it and/or modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation, either version 2 of the
+#  License, or any newer version.
+#
+#  This program is distributed in the hope that it will be useful, but WITHOUT
+#  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+#  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+#  more details.
+#
+#  You should have received a copy of the GNU General Public License along with
+#  this program. If not, see https://www.gnu.org/licenses/gpl-2.0.txt
+#
+#
+#  INFN-LNL specific author : Mauro Giacchini
+#                    email  : mauro.giacchini@lnl.infn.it
+#
+#
 ################################################################################
-# Database for QPG4 Vacuum Controller
-# Common parameters
+# Database for QPG4 Vacuum Controller -- Common Parameters
+#
 # Mauro Giacchini - 2018-04-18
 #
 # Macro:
@@ -12,10 +31,78 @@
 #
 ################################################################################
 
-record (stringin, "$(AREASTRUCTURE):$(DEVICENAME):PwrStatus$(PUMP)R")
+record (stringin, "$(AREASTRUCTURE):$(DEVICENAME):PwrStat$(PUMP)")
 {
     field (DESC, "GET SUPPLY STATUS OF PUMP $(PUMP)")
     field (DTYP, "stream")
     field (INP,  "@qpcMod.proto getStatus($(PUMP)) $(ASYNPORT)")
     field (SCAN, "1 second")
+}
+
+record (ai, "$(AREASTRUCTURE):$(DEVICENAME):Cur$(PUMP)")
+{
+    field (DESC, "READ CURRENT FROM SUPPLY $(PUMP) [AMPS]")
+    field (DTYP, "stream")
+    field (INP,  "@qpcMod.proto getCurrent($(PUMP)) $(ASYNPORT)")
+    field (SCAN,  "1 second")
+}
+
+record (ai, "$(AREASTRUCTURE):$(DEVICENAME):Prs$(PUMP)")
+{
+    field (DESC, "READ PRESSURE FROM SUPPLY $(PUMP) [AMPS]")
+    field (DTYP, "stream")
+    field (INP,  "@qpcMod.proto getPressure($(PUMP)) $(ASYNPORT)")
+    field (SCAN,  "1 second")
+}
+
+record (stringin, "$(AREASTRUCTURE):$(DEVICENAME):PrsUnit$(PUMP)")
+{
+    field (DESC, "READ PRESSURE UNIT FROM SUPPLY $(PUMP)")
+    field (DTYP, "stream")
+    field (INP,  "@qpcMod.proto getPressureUnit($(PUMP)) $(ASYNPORT)")
+    field (SCAN, "1 second")
+}
+
+record (stringout, "$(AREASTRUCTURE):$(DEVICENAME):Debug")
+{
+    field (DESC, "DEBUG COMMUNICATION RECORD")
+    field (DTYP, "stream")
+    field (OUT,  "@qpcMod.proto debug() $(ASYNPORT)")
+    field (SCAN,  "Passive")
+}
+
+record (ai, "$(AREASTRUCTURE):$(DEVICENAME):Vol$(PUMP)")
+{
+    field (DESC, "READ VOLTAGE FROM SUPPLY $(PUMP) [VOLTS]")
+    field (DTYP, "stream")
+    field (INP,  "@qpcMod.proto getVoltage($(PUMP)) $(ASYNPORT)")
+    field (SCAN,  "1 second")
+}
+
+record(bi,  "$(AREASTRUCTURE):$(DEVICENAME):EnRB$(PUMP)") {
+  field (DESC,  "INDICATE IF HV FOR SUPPLY $(PUMP) IS ENABLED")
+  field (ONAM,  "one_name")
+  field (ZNAM,  "zero_name")
+  field (DTYP, "stream")
+  field (INP,  "@qpcMod.proto getEnabledHV($(PUMP)) $(ASYNPORT)")
+  field (SCAN,  "1 second")
+}
+
+record(bo,  "$(AREASTRUCTURE):$(DEVICENAME):En$(PUMP)") {
+  field (DESC,  "ENABLE HV FOR SUPPLY $(PUMP)")
+  field (ONAM,  "one_name")
+  field (ZNAM,  "zero_name")
+  field (DTYP, "stream")
+  field (OUT,  "@qpcMod.proto setEnableHV($(PUMP)) $(ASYNPORT)")
+  field (SCAN,  "Passive")
+}
+
+
+record(bo,  "$(AREASTRUCTURE):$(DEVICENAME):Dis$(PUMP)") {
+  field (DESC,  "DISABLE HV FOR SUPPLY $(PUMP)")
+  field (ONAM,  "one_name")
+  field (ZNAM,  "zero_name")
+  field (DTYP, "stream")
+  field (OUT,  "@qpcMod.proto setDisableHV($(PUMP)) $(ASYNPORT)")
+  field (SCAN,  "Passive")
 }
