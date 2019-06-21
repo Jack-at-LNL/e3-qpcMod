@@ -71,30 +71,6 @@ record (stringout, "$(AREASTRUCTURE):$(DEVICENAME):Debug")
     field (SCAN,  "Passive")
 }
 
-record (stringout, "$(AREASTRUCTURE):$(DEVICENAME):AutRstartOn")
-{
-    field (DESC, "ENABLE SUPPLIES TO AUTORESTART")
-    field (DTYP, "stream")
-    field (OUT,  "@qpcMod.proto setAutoRestartOn() $(ASYNPORT)")
-    field (SCAN,  "Passive")
-}
-
-record (stringout, "$(AREASTRUCTURE):$(DEVICENAME):AutRstartOff")
-{
-    field (DESC, "DISABLE SUPPLIES TO AUTORESTART")
-    field (DTYP, "stream")
-    field (OUT,  "@qpcMod.proto setAutoRestartOff() $(ASYNPORT)")
-    field (SCAN,  "Passive")
-}
-
-record (stringout, "$(AREASTRUCTURE):$(DEVICENAME):AutRstartRB")
-{
-    field (DESC, "GET AUTORESTART MODE")
-    field (PINI, "YES")
-    field (DTYP, "stream")
-    field (OUT,  "@qpcMod.proto getAutoRestart() $(ASYNPORT)")
-    field (SCAN,  "Passive")
-}
 
 record (ai, "$(AREASTRUCTURE):$(DEVICENAME):Vol$(PUMP)")
 {
