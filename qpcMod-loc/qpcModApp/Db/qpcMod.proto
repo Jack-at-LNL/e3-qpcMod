@@ -24,33 +24,37 @@ InTerminator = CR;
 ReadTimeout = 2000;
 ReplyTimeout = 2000;
 
+# get the current erogated by the controller related to a single pump
 getCurrent
 {
 	out "cmd 0A \$1";
-	# out "~ 00 0A \$1 00";
+	wait 1000;
 	in "%*6c%E";
 	ExtraInput = Ignore;
 }
 
+# get the pressure measured 
 getPressure
 {
 	out "cmd 0B \$1";
-	# out "~ 00 0B \$1 00";
-	in "%*6c%E";
+	wait 1000;
+	in "%*6c%f";
 	ExtraInput = Ignore;
 }
 
+# get the voltage measured by the controller
 getVoltage
 {
 	out "cmd 0C \$1";
-	# out "~ 00 0C \$1 00";
+	wait 1000;
 	in "%*6c%f";
 }
 
+# get the actual working status for the single pump
 getStatus
 {
 	out "cmd 0D \$1";
-	# out "~ 00 0D \$1 00";
+	wait 1000;
 	in "%*6c%s";
 	ExtraInput = Ignore;
 }
@@ -58,13 +62,14 @@ getStatus
 getPressureUnit
 {
 	out "cmd 0B 1";
-	# out "~ 00 0B 01 00";
+	wait 1000;
 	in "%*6c%*f%*1c%s";
 }
 
 getEnabledHV
 {
 	out "cmd 61 \$1";
+	wait 1000;
 #	in "%*6c%s";
 	in "%*6c%{YES|NO}";
 	ExtraInput = Ignore;
@@ -79,8 +84,27 @@ setDisableHV
 {
 	out "cmd 38 \$1";
 }
+
+setAutoRestartOn
+{
+	out "cmd 33 YES";
+}
+
+setAutoRestartOff
+{
+	out "cmd 33 NO";
+}
+
+getAutoRestart
+{
+	out "cmd 34";
+	wait 1000;
+	in "%39c";
+}
+
+
 # for quickly testing new commands
 debug {
     ExtraInput = Ignore;
-    out "%s"; in "%39c"
+    out "%s"; in "%39c";
 }

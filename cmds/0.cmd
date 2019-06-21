@@ -48,7 +48,7 @@ epicsEnvSet("TOP","/home/maurogiacchini/e3-dtl/siteApps/e3-qpcMod")
 epicsEnvSet("STREAM_PROTOCOL_PATH", "$(TOP)/qpcMod-loc/qpcModApp/Db")
 
 epicsEnvSet("DEVICENAME", "VAC-QPG4")
-epicsEnvSet("IPADDR", "10.6.0.88")
+epicsEnvSet("IPADDR", "10.6.0.99")
 epicsEnvSet("PORT", "23")
 
 epicsEnvSet("AREASTRUCTURE", "DTL-010")
@@ -59,7 +59,7 @@ drvAsynIPPortConfigure(${DEVICENAME}-asyn-port,${IPADDR}:${PORT},0,0,0)
 
 dbLoadRecords("$(TOP)/qpcMod-loc/qpcModApp/Db/qpcMod.db", "DEVICENAME = $(DEVICENAME), ASYNPORT = $(DEVICENAME)-asyn-port, PUMP = 1 , AREASTRUCTURE = $(AREASTRUCTURE)")
 
-dbLoadRecords("$(TOP)/qpcMod-loc/qpcModApp/Db/qpcMod.db", "DEVICENAME = $(DEVICENAME), ASYNPORT = $(DEVICENAME)-asyn-port, PUMP = 2 , AREASTRUCTURE = $(AREASTRUCTURE)")
+#dbLoadRecords("$(TOP)/qpcMod-loc/qpcModApp/Db/qpcMod.db", "DEVICENAME = $(DEVICENAME), ASYNPORT = $(DEVICENAME)-asyn-port, PUMP = 2 , AREASTRUCTURE = $(AREASTRUCTURE)")
 
 #dbLoadRecords("iocAdminSoft.db","IOC=$(IOCNAME):IocStat")
 
